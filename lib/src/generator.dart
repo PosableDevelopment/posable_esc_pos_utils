@@ -1,7 +1,7 @@
 /*
  * esc_pos_utils
  * Created by Andrey U.
- * 
+ *
  * Copyright (c) 2019-2020. All rights reserved.
  * See LICENSE for distribution and usage details.
  */
@@ -349,6 +349,7 @@ class Generator {
     int? maxCharsPerLine,
   }) {
     List<int> bytes = [];
+    bytes += setStyles(PosStyles().copyWith(align: styles.align));
     if (!containsChinese) {
       bytes += _text(
         _encode(text, isKanji: containsChinese),
@@ -461,10 +462,10 @@ class Generator {
   /// Total width of columns in one row must be equal 12.
   List<int> row(List<PosColumn> cols) {
     List<int> bytes = [];
-    final isSumValid = cols.fold(0, (int sum, col) => sum + col.width) == 12;
-    if (!isSumValid) {
-      throw Exception('Total columns width must be equal to 12');
-    }
+    // final isSumValid = cols.fold(0, (int sum, col) => sum + col.width) == 12;
+    // if (!isSumValid) {
+    //   throw Exception('Total columns width must be equal to 12');
+    // }
     bool isNextRow = false;
     List<PosColumn> nextRow = <PosColumn>[];
 
@@ -769,6 +770,7 @@ class Generator {
     int? maxCharsPerLine,
   }) {
     List<int> bytes = [];
+    bytes += setStyles(PosStyles().copyWith(align: styles.align));
     if (colInd != null) {
       double charWidth =
           _getCharWidth(styles, maxCharsPerLine: maxCharsPerLine);
